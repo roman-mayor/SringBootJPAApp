@@ -46,7 +46,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(path = "delete/{id}")
     public HttpStatus deleteUser(@PathVariable Long id) {
         if (userService.findUserById(id).isPresent()) {
             userService.deleteUserById(id);
