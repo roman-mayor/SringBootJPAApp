@@ -14,6 +14,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping(path = "/user")
 public class UserController {
 
     private UserService userService;
@@ -28,19 +29,19 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
+    @GetMapping("/getUser/{id}")
+    public ResponseEntity<Optional<User>> findUserById(@PathVariable Long id) {
+        if (userService.findUserById(id).isPresent()) {
+            return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     @PutMapping("/update/{id}")
     @Transactional
     public ResponseEntity<Optional<User>> updateUser(@RequestBody UserDto userDto, @PathVariable Long id) {
         if (userService.findUserById(id).isPresent()) {
             return new ResponseEntity<>(userService.updateUser(userDto,id), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/getUser/{id}")
-    public ResponseEntity<Optional<User>> findUserById(@PathVariable Long id) {
-        if (userService.findUserById(id).isPresent()) {
-            return new ResponseEntity<>(userService.findUserById(id), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

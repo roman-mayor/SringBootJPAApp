@@ -16,11 +16,18 @@ public class UserService {
     private final UserRepository userRepository;
 
     public User createUser(UserDto userDto) {
+    if (findUserByUsername(userDto.getUsername()).isPresent()) {
+        throw new RuntimeException("Такой пользователь уже существует");
+    }
         return userRepository.save(User.builder()
                         .username(userDto.getUsername())
                         .firstname(userDto.getFirstname())
                         .lastname(userDto.getLastname())
                         .build());
+    }
+
+    public Optional<User> findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     public List<User> getAllUsers() {
