@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>by.roman_mayorov</groupId>
-    <artifactId>SpringBootJPAApp</artifactId>
+    <artifactId>springboot-jpa-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>SpringBootJPAApp</name>
-    <description>SpringBootJPAApp</description>
+    <name>springboot-jpa-app</name>
+    <description>springboot-jpa-app</description>
     <url/>
     <licenses>
         <license/>
